@@ -36,7 +36,8 @@
         "simple-import-sort/exports": "error",
         "simple-import-sort/imports": "error",
         "react/no-unknown-property": "off",
-        "@typescript-eslint/no-non-null-assertion": "off"
+        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-explicit-any": "off"
     },
     "settings": {
         "import/resolver": {
