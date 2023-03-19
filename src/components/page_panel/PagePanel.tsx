@@ -1,3 +1,5 @@
+import './PagePanel.scss';
+
 import { Pages } from '../app/useApp';
 
 type Props = {
@@ -7,7 +9,13 @@ type Props = {
 };
 
 const PagePanel = ({ children, selectedPage, page }: Props) => {
-  return <div hidden={selectedPage !== page}>{children}</div>;
+  return (
+    <div
+      hidden={selectedPage !== page}
+      className='page_panel'>
+      {children}
+    </div>
+  );
 };
 
 export default PagePanel;

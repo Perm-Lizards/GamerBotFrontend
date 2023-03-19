@@ -5,6 +5,7 @@ import CodeIcon from '@mui/icons-material/Code';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 
 import PagePanel from '../page_panel/PagePanel';
+import Profile from '../pages/profile/Profile';
 import useApp, { Pages } from './useApp';
 
 const App = () => {
@@ -16,7 +17,7 @@ const App = () => {
         <PagePanel
           selectedPage={page}
           page={Pages.Profile}>
-          profile
+          <Profile />
         </PagePanel>
         <PagePanel
           selectedPage={page}
