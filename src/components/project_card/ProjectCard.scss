@@ -5,6 +5,7 @@
     border-radius   : 10px;
     background-color: #3B46AE;
     color           : white;
+    cursor          : pointer;
 
     @mixin part {
         display       : flex;
@@ -16,11 +17,11 @@
         @include part;
 
         &-title {
-            font-size: 24px;
+            font-size: 18px;
         }
 
         &-description {
-            font-size: 14px;
+            font-size: 12px;
         }
     }
 
@@ -29,12 +30,13 @@
         justify-content: space-between;
 
         &-prog_langs {
-            display: flex;
-            gap    : 5px;
+            display   : flex;
+            gap       : 5px;
+            min-height: 25px;
 
             &-icon {
-                width           : 30px;
-                height          : 30px;
+                width           : 25px;
+                height          : 25px;
                 border-radius   : 100%;
                 background-color: #D9D9D9;
             }
@@ -47,7 +49,7 @@
             gap            : 5px;
 
             &-text {
-                font-size: 16px;
+                font-size: 14px;
             }
         }
 
@@ -57,4 +59,8 @@
             font-size      : 12px;
         }
     }
+}
+
+.new_project_card {
+    background-color: #7B86E5;
 }
