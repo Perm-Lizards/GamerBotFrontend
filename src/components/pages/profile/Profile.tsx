@@ -109,6 +109,7 @@ const Profile = () => {
             progLangs={progLangs}
             usersNumber={usersNumber}
             date={date}
+            className='own_project_card'
             key={i}
           />
         ))}
