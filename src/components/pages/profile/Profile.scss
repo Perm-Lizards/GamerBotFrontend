@@ -83,14 +83,10 @@
             padding         : 10px;
             background-color: #847F7F;
             border-radius   : 10px;
+            color           : white;
         }
 
         &-buttons {
-            display: flex;
-            gap    : 10px;
-            width  : min-content;
-            width  : fit-content;
-
             @mixin button {
                 border-radius: 15px !important;
 
