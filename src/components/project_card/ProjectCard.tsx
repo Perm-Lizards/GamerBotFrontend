@@ -12,7 +12,7 @@ type Props = {
   usersNumber: number | string;
   date: string;
   onClick?: () => void;
-  className?: 'new_project_card';
+  className?: 'new_project_card' | 'own_project_card';
 };
 
 const ProjectCard = ({ title, description, progLangs, usersNumber, date, onClick, className }: Props) => {
