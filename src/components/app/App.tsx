@@ -3,13 +3,18 @@ import './App.scss';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CodeIcon from '@mui/icons-material/Code';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
+import { useState } from 'react';
 
 import PagePanel from '../page_panel/PagePanel';
 import Profile from '../pages/profile/Profile';
-import useApp, { Pages } from './useApp';
+import { Pages } from './enums/Pages';
 
 const App = () => {
-  const { page, onChangePage } = useApp();
+  const [page, setPage] = useState(Pages.Profile);
+
+  const onChangePage = (_: any, newPage: Pages) => {
+    setPage(newPage);
+  };
 
   return (
     <div className='app'>

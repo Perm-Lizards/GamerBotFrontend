@@ -1,14 +1,14 @@
 import './ProjectCard.scss';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { useMemo } from 'react';
 
-import { ProgLangs } from '../../common/types/ProgLangs';
+import { ProgLangsEnum } from '../../common/enums/ProgLangsEnum';
+import ProgLangs from '../prog_langs/ProgLangs';
 
 type Props = {
   title: string;
   description?: string;
-  progLangs?: ProgLangs[];
+  progLangs?: ProgLangsEnum[];
   usersNumber: number | string;
   date: string;
   onClick?: () => void;
@@ -16,17 +16,6 @@ type Props = {
 };
 
 const ProjectCard = ({ title, description, progLangs, usersNumber, date, onClick, className }: Props) => {
-  const renderProgLangs = useMemo(
-    () =>
-      progLangs?.map((_, i) => (
-        <img
-          className='project_card-right_part-prog_langs-icon'
-          key={i}
-        />
-      )),
-    [progLangs]
-  );
-
   return (
     <div
       className={['project_card', className].join(' ')}
@@ -36,7 +25,12 @@ const ProjectCard = ({ title, description, progLangs, usersNumber, date, onClick
         <span className='project_card-left_part-description'>{description}</span>
       </div>
       <div className='project_card-right_part'>
-        <div className='project_card-right_part-prog_langs'>{renderProgLangs}</div>
+        <ProgLangs
+          width={25}
+          height={25}
+          progLangs={progLangs}
+          justifyContent='flex-end'
+        />
         <div className='project_card-right_part-users_number'>
           <span className='project_card-right_part-users_number-text'>{usersNumber}</span>
           <AccountCircleIcon sx={{ fontSize: 20 }} />
