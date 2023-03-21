@@ -18,13 +18,16 @@
     "@mui/material": "5.11.13",
     "@reduxjs/toolkit": "1.9.3",
     "dayjs": "1.11.7",
+    "lodash": "4.17.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "8.0.5"
   },
   "devDependencies": {
+    "@types/lodash": "4.14.191",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
+    "@types/react-redux": "7.1.25",
     "@typescript-eslint/eslint-plugin": "5.55.0",
     "@typescript-eslint/parser": "5.55.0",
     "@vitejs/plugin-react": "3.1.0",
