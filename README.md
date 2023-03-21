@@ -3,7 +3,10 @@
 Фронтенд для проекта GamerBot
 
 ### Stack
+
 - TypeScript
 - React
-- Redux-Toolkit
+- Redux-ToolKit
+- RTK Query
+- RTK Listener
 - MUI
