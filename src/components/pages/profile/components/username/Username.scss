@@ -1,0 +1,29 @@
+.marquee {
+    animation         : marquee infinite;
+    animation-duration: 6s;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translate(0);
+    }
+
+    90%,
+    100% {
+        transform: translate(calc(-50% - 10px));
+    }
+}
+
+.username {
+    flex-basis     : 30%;
+    padding-top    : 75px;
+    overflow       : hidden;
+    justify-content: flex-end;
+
+    &-text {
+        display    : flex;
+        width      : fit-content;
+        gap        : 20px;
+        white-space: nowrap;
+    }
+}
