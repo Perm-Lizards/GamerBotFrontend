@@ -1,10 +1,11 @@
 import './SelectProgLangsPopup.scss';
 
-import { Button, Dialog, DialogContent, DialogTitle } from '@mui/material';
+import { Button } from '@mui/material';
 import { Stack } from '@mui/system';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { ProgLangsEnum } from '../../common/enums/ProgLangsEnum';
+import Popup from '../popup/Popup';
 import ProgLangIcon from '../prog_lang_icon/ProgLangIcon';
 import ProgLangs from '../prog_langs/ProgLangs';
 
@@ -78,39 +79,37 @@ const SelectProgLangsPopup = ({ progLangs, onChange }: Props) => {
           onClick={onOpen}
         />
       </div>
-      <Dialog
+      <Popup
         fullWidth={true}
         open={open}
-        onClose={onClose}>
-        <DialogTitle>Выбор языков программирования</DialogTitle>
-        <DialogContent>
-          <Stack gap={2}>
-            <Stack
-              gap={1}
-              direction='row'
-              flexWrap='wrap'
-              className='prog_langs_icons'>
-              {renderProgLangsGrid}
-            </Stack>
-            <Stack
-              justifyContent='space-between'
-              direction='row'>
-              <Button
-                color='error'
-                variant='contained'
-                onClick={onClose}>
-                Закрыть
-              </Button>
-              <Button
-                color='success'
-                variant='contained'
-                onClick={onSave}>
-                Сохранить
-              </Button>
-            </Stack>
+        onClose={onClose}
+        title='Выбор языков программирования'>
+        <Stack gap={2}>
+          <Stack
+            gap={1}
+            direction='row'
+            flexWrap='wrap'
+            className='prog_langs_icons'>
+            {renderProgLangsGrid}
           </Stack>
-        </DialogContent>
-      </Dialog>
+          <Stack
+            justifyContent='space-between'
+            direction='row'>
+            <Button
+              color='error'
+              variant='contained'
+              onClick={onClose}>
+              Закрыть
+            </Button>
+            <Button
+              color='success'
+              variant='contained'
+              onClick={onSave}>
+              Сохранить
+            </Button>
+          </Stack>
+        </Stack>
+      </Popup>
     </>
   );
 };

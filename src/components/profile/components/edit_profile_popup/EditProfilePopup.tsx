@@ -1,9 +1,10 @@
 import EditIcon from '@mui/icons-material/Edit';
-import { Button, Dialog, DialogContent, DialogTitle, IconButton, Stack, TextareaAutosize, TextField } from '@mui/material';
+import { Button, IconButton, Stack, TextareaAutosize, TextField } from '@mui/material';
 import _ from 'lodash';
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 import { ProgLangsEnum } from '../../../../common/enums/ProgLangsEnum';
+import Popup from '../../../popup/Popup';
 import SelectProgLangsPopup from '../../../select_prog_langs_popup/SelectProgLangsPopup';
 
 const user = {
@@ -66,57 +67,55 @@ const EditProfilePopup = () => {
       <IconButton onClick={onOpen}>
         <EditIcon />
       </IconButton>
-      <Dialog
+      <Popup
         fullWidth={true}
         open={open}
         onClose={onClose}
-        className='edit_profile_popup'>
-        <DialogTitle className='edit_profile_popup-title'>Редактирование профиля</DialogTitle>
-        <DialogContent>
-          <Stack gap={2}>
-            <SelectProgLangsPopup
-              progLangs={progLangs}
-              onChange={onChangeProgLangs}
-            />
-            <TextField
-              label='Ссылка на telegram'
-              variant='outlined'
-              value={telegram}
-              onChange={onChangeTelegram}
-            />
-            <TextField
-              label='Ссылка на github'
-              variant='outlined'
-              value={github}
-              onChange={onChangeGithub}
-            />
-            <TextareaAutosize
-              minRows={5}
-              maxRows={5}
-              placeholder='Описание'
-              value={description}
-              onChange={onChangeDescription}
-              style={{ resize: 'none', width: '100%' }}
-            />
-            <Stack
-              justifyContent='space-between'
-              direction='row'>
-              <Button
-                color='error'
-                variant='contained'
-                onClick={onClose}>
-                Закрыть
-              </Button>
-              <Button
-                color='success'
-                variant='contained'
-                onClick={onSave}>
-                Сохранить
-              </Button>
-            </Stack>
+        className='edit_profile_popup'
+        title='Редактирование профиля'>
+        <Stack gap={2}>
+          <SelectProgLangsPopup
+            progLangs={progLangs}
+            onChange={onChangeProgLangs}
+          />
+          <TextField
+            label='Ссылка на telegram'
+            variant='outlined'
+            value={telegram}
+            onChange={onChangeTelegram}
+          />
+          <TextField
+            label='Ссылка на github'
+            variant='outlined'
+            value={github}
+            onChange={onChangeGithub}
+          />
+          <TextareaAutosize
+            minRows={5}
+            maxRows={5}
+            placeholder='Описание'
+            value={description}
+            onChange={onChangeDescription}
+            style={{ resize: 'none', width: '100%' }}
+          />
+          <Stack
+            justifyContent='space-between'
+            direction='row'>
+            <Button
+              color='error'
+              variant='contained'
+              onClick={onClose}>
+              Закрыть
+            </Button>
+            <Button
+              color='success'
+              variant='contained'
+              onClick={onSave}>
+              Сохранить
+            </Button>
           </Stack>
-        </DialogContent>
-      </Dialog>
+        </Stack>
+      </Popup>
     </>
   );
 };
