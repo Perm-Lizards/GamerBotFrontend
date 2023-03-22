@@ -7,9 +7,9 @@ import { Button, Stack } from '@mui/material';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
 
-import { ProgLangsEnum } from '../../../common/enums/ProgLangsEnum';
-import ProgLangs from '../../prog_langs/ProgLangs';
-import ProjectCard from '../../project_card/ProjectCard';
+import { ProgLangsEnum } from '../../common/enums/ProgLangsEnum';
+import ProgLangs from '../prog_langs/ProgLangs';
+import ProjectCard from '../project_card/ProjectCard';
 import EditProfilePopup from './components/edit_profile_popup/EditProfilePopup';
 import Username from './components/username/Username';
 

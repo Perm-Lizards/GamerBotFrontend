@@ -1,6 +1,6 @@
 import './PagePanel.scss';
 
-import { Pages } from '../app/useApp';
+import { Pages } from '../../common/enums/Pages';
 
 type Props = {
   children?: string | JSX.Element;
