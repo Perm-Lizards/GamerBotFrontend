@@ -1,57 +1,36 @@
 .project_card {
-    display         : flex;
-    justify-content : space-between;
     padding         : 10px;
     border-radius   : 10px;
     background-color: #3B46AE;
     color           : white;
     cursor          : pointer;
 
-    @mixin part {
-        display       : flex;
-        flex-direction: column;
-        gap           : 5px;
+    &-title {
+        font-size: 18px;
     }
 
-    &-left_part {
-        @include part;
+    &-description {
+        font-size: 12px;
+    }
 
-        &-title {
-            font-size: 18px;
-        }
+    &-users_number {
+        display        : flex;
+        align-items    : center;
+        justify-content: flex-end;
+        gap            : 5px;
 
-        &-description {
-            font-size: 12px;
+        &-text {
+            font-size: 14px;
         }
     }
 
-    &-right_part {
-        @include part;
-        justify-content: space-between;
-
-        &-users_number {
-            display        : flex;
-            align-items    : center;
-            justify-content: flex-end;
-            gap            : 5px;
-
-            &-text {
-                font-size: 14px;
-            }
-        }
-
-        &-date {
-            display        : flex;
-            justify-content: flex-end;
-            font-size      : 12px;
-        }
+    &-createdAt {
+        display        : flex;
+        justify-content: flex-end;
+        font-size      : 12px;
     }
 }
 
 .new_project_card {
     background-color: #7B86E5;
-}
-
-.own_project_card {
-    background-color: #3DB392;
 }

@@ -1,11 +1,11 @@
 import './PagePanel.scss';
 
-import { Pages } from '../../common/enums/Pages';
+import { PagesEnum } from '../../common/enums/PagesEnum';
 
 type Props = {
   children?: string | JSX.Element;
-  selectedPage: Pages;
-  page: Pages;
+  selectedPage: PagesEnum;
+  page: PagesEnum;
 };
 
 const PagePanel = ({ children, selectedPage, page }: Props) => {

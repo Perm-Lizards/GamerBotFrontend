@@ -7,15 +7,15 @@ import { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 
-import { Pages } from './common/enums/Pages';
+import { PagesEnum } from './common/enums/PagesEnum';
 import store from './common/store';
 import PagePanel from './components/page_panel/PagePanel';
-import Profile from './components/profile/Profile';
+import Profile from './components/pages/profile/Profile';
 
 const App = () => {
-  const [page, setPage] = useState(Pages.Profile);
+  const [page, setPage] = useState(PagesEnum.Profile);
 
-  const onChangePage = (_: any, newPage: Pages) => {
+  const onChangePage = (_: any, newPage: PagesEnum) => {
     setPage(newPage);
   };
 
@@ -24,12 +24,12 @@ const App = () => {
       <div className='app-content'>
         <PagePanel
           selectedPage={page}
-          page={Pages.Profile}>
+          page={PagesEnum.Profile}>
           <Profile />
         </PagePanel>
         <PagePanel
           selectedPage={page}
-          page={Pages.Projects}>
+          page={PagesEnum.Projects}>
           projects
         </PagePanel>
       </div>
@@ -38,13 +38,13 @@ const App = () => {
         value={page}
         onChange={onChangePage}>
         <BottomNavigationAction
-          label={Pages.Profile}
-          value={Pages.Profile}
+          label={PagesEnum.Profile}
+          value={PagesEnum.Profile}
           icon={<AccountCircleIcon />}
         />
         <BottomNavigationAction
-          label={Pages.Projects}
-          value={Pages.Projects}
+          label={PagesEnum.Projects}
+          value={PagesEnum.Projects}
           icon={<CodeIcon />}
         />
       </BottomNavigation>
