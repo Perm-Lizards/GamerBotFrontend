@@ -3,9 +3,9 @@ import { Button, IconButton, Stack, TextareaAutosize, TextField } from '@mui/mat
 import _ from 'lodash';
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
-import { ProgLangsEnum } from '../../../../common/enums/ProgLangsEnum';
-import Popup from '../../../popup/Popup';
-import SelectProgLangsPopup from '../../../select_prog_langs_popup/SelectProgLangsPopup';
+import { ProgLangsEnum } from '../../../../../common/enums/ProgLangsEnum';
+import Popup from '../../../../popup/Popup';
+import SelectProgLangsPopup from '../../../../select_prog_langs_popup/SelectProgLangsPopup';
 
 const user = {
   telegram: 'link',
