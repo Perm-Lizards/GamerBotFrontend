@@ -1,9 +1,10 @@
 import './Profile.scss';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AddIcon from '@mui/icons-material/Add';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TelegramIcon from '@mui/icons-material/Telegram';
-import { Button, Stack } from '@mui/material';
+import { Button, Fab, Stack } from '@mui/material';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
 
@@ -122,7 +123,24 @@ const Profile = () => {
             </Button>
           </Stack>
         </div>
-        <div className='profile-projects'>{renderProjects}</div>
+        <div className='profile-projects'>
+          <Stack
+            gap='5px'
+            padding='0 10px'>
+            {renderProjects}
+          </Stack>
+          <Fab
+            style={{
+              position: 'absolute',
+              bottom: '21px',
+              right: '20px',
+            }}
+            size='medium'
+            color='primary'
+            aria-label='add'>
+            <AddIcon />
+          </Fab>
+        </div>
       </div>
     </Layout>
   );
