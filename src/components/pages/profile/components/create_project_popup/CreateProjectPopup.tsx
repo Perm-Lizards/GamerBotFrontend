@@ -1,51 +1,34 @@
-import EditIcon from '@mui/icons-material/Edit';
-import { Button, IconButton, Stack, TextareaAutosize, TextField } from '@mui/material';
-import _ from 'lodash';
-import { ChangeEvent, useCallback, useState } from 'react';
+import AddIcon from '@mui/icons-material/Add';
+import { Button, Fab, TextareaAutosize, TextField } from '@mui/material';
+import { Stack } from '@mui/system';
+import { ChangeEvent, useState } from 'react';
 
 import { ProgLangsEnum } from '../../../../../common/enums/ProgLangsEnum';
 import Popup from '../../../../popup/Popup';
 import SelectProgLangsPopup from '../../../../select_prog_langs_popup/SelectProgLangsPopup';
 
-const user = {
-  telegram: 'link',
-  github: 'link',
-  progLangs: [ProgLangsEnum.JavaScript] as ProgLangsEnum[],
-  description: 'Какое-то описание',
-};
-
-const EditProfilePopup = () => {
+const CreateProjectPopup = () => {
   const [open, setOpen] = useState(false);
   const [progLangs, setProgLangs] = useState([] as ProgLangsEnum[]);
   const [telegram, setTelegram] = useState('');
   const [github, setGithub] = useState('');
+  const [projectName, setProjectName] = useState('');
   const [description, setDescription] = useState('');
 
   const onOpen = () => {
-    setProgLangs(user.progLangs);
-    setTelegram(user.telegram);
-    setGithub(user.github);
-    setDescription(user.description);
+    setProgLangs([] as ProgLangsEnum[]);
+    setTelegram('');
+    setGithub('');
+    setProjectName('');
+    setDescription('');
     setOpen(true);
   };
 
   const onClose = () => setOpen(false);
 
-  const onSave = useCallback(() => {
-    const newUser = {
-      ..._.cloneDeep(user),
-      progLangs,
-      telegram,
-      github,
-      description,
-    };
-
-    if (!_.isEqual(newUser, user)) {
-      // TODO Отправка запроса
-    }
-
+  const onCreate = () => {
     onClose();
-  }, [description, github, progLangs, telegram]);
+  };
 
   const onChangeProgLangs = (newProgLangs: ProgLangsEnum[]) => setProgLangs(newProgLangs);
 
@@ -53,18 +36,29 @@ const EditProfilePopup = () => {
 
   const onChangeGithub = (e: ChangeEvent<HTMLInputElement>) => setGithub(e.target.value);
 
+  const onChangeProjectName = (e: ChangeEvent<HTMLInputElement>) => setProjectName(e.target.value);
+
   const onChangeDescription = (e: ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value);
 
   return (
     <>
-      <IconButton onClick={onOpen}>
-        <EditIcon />
-      </IconButton>
+      <Fab
+        style={{
+          position: 'absolute',
+          bottom: '21px',
+          right: '20px',
+        }}
+        size='medium'
+        color='primary'
+        aria-label='add'
+        onClick={onOpen}>
+        <AddIcon />
+      </Fab>
       <Popup
-        fullWidth={true}
         open={open}
         onClose={onClose}
-        title='Редактирование профиля'>
+        fullWidth={true}
+        title='Создание проекта'>
         <Stack gap={2}>
           <SelectProgLangsPopup
             progLangs={progLangs}
@@ -82,6 +76,12 @@ const EditProfilePopup = () => {
             value={github}
             onChange={onChangeGithub}
           />
+          <TextField
+            label='Название'
+            variant='outlined'
+            value={projectName}
+            onChange={onChangeProjectName}
+          />
           <TextareaAutosize
             minRows={5}
             maxRows={5}
@@ -97,13 +97,13 @@ const EditProfilePopup = () => {
               color='error'
               variant='contained'
               onClick={onClose}>
-              Закрыть
+              Отмена
             </Button>
             <Button
               color='success'
               variant='contained'
-              onClick={onSave}>
-              Сохранить
+              onClick={onCreate}>
+              Создать
             </Button>
           </Stack>
         </Stack>
@@ -112,4 +112,4 @@ const EditProfilePopup = () => {
   );
 };
 
-export default EditProfilePopup;
+export default CreateProjectPopup;
