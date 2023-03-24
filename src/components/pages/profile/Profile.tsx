@@ -1,10 +1,9 @@
 import './Profile.scss';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AddIcon from '@mui/icons-material/Add';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TelegramIcon from '@mui/icons-material/Telegram';
-import { Button, Fab, Stack } from '@mui/material';
+import { Button, Stack } from '@mui/material';
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
 
@@ -12,6 +11,7 @@ import { ProgLangsEnum } from '../../../common/enums/ProgLangsEnum';
 import Layout from '../../layout/Layout';
 import ProgLangs from '../../prog_langs/ProgLangs';
 import ProjectCard from '../../project_card/ProjectCard';
+import CreateProjectPopup from './components/create_project_popup/CreateProjectPopup';
 import EditProfilePopup from './components/edit_profile_popup/EditProfilePopup';
 import Username from './components/username/Username';
 
@@ -129,17 +129,7 @@ const Profile = () => {
             padding='0 10px'>
             {renderProjects}
           </Stack>
-          <Fab
-            style={{
-              position: 'absolute',
-              bottom: '21px',
-              right: '20px',
-            }}
-            size='medium'
-            color='primary'
-            aria-label='add'>
-            <AddIcon />
-          </Fab>
+          <CreateProjectPopup />
         </div>
       </div>
     </Layout>
