@@ -1,4 +1,4 @@
-.projects{
+.projects {
     position      : relative;
     min-height    : 125px;
     height        : 100%;
@@ -7,21 +7,18 @@
     gap           : 10px;
     padding       : 10px;
 
-    &-search{
+    &-search {
         width           : 100%;
         padding         : 10px;
         background-color: #45ABE4;
         border-radius   : 10px;
         color           : white;
     }
+
     &-buttons {
 
-    &-search {
+        &-search {}
 
+        &-filter {}
     }
-
-    &-filter {
-
-    }
-}
 }
