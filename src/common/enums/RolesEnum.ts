@@ -1,0 +1,7 @@
+export enum RolesEnum {
+  ADMIN,
+  PROJECT_OWNER,
+  PROJECT_ADMIN,
+  PROJECT_MEMBER,
+  GUEST,
+}
