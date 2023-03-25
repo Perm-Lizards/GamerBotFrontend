@@ -1,39 +1,38 @@
-import { Button, Stack, TextareaAutosize, TextField } from '@mui/material';
-import { ChangeEvent, useEffect, useState } from 'react';
+import EditIcon from '@mui/icons-material/Edit';
+import { Button, IconButton, Stack, TextareaAutosize, TextField } from '@mui/material';
+import { ChangeEvent, useState } from 'react';
 
-import { ProgLangsEnum } from '../../../../common/enums/ProgLangsEnum';
-import Popup from '../../../popup/Popup';
-import SelectProgLangsPopup from '../../../select_prog_langs_popup/SelectProgLangsPopup';
+import { ProgLangsEnum } from '../../../../../common/enums/ProgLangsEnum';
+import { ProjectType } from '../../../../../common/types/ProjectType';
+import Popup from '../../../../popup/Popup';
+import SelectProgLangsPopup from '../../../../select_prog_langs_popup/SelectProgLangsPopup';
 
 type Props = {
-  open: boolean;
-  onClose: () => void;
-  onSave: () => void;
-  project: {
-    title: string;
-    github: string;
-    telegram: string;
-    description: string;
-    progLangs: ProgLangsEnum[];
-  };
+  project: ProjectType;
 };
 
-const EditProjectPopup = ({ open, onClose, onSave, project }: Props) => {
+const EditProjectPopup = ({ project }: Props) => {
+  const [open, setOpen] = useState(false);
   const [progLangs, setProgLangs] = useState([] as ProgLangsEnum[]);
   const [telegram, setTelegram] = useState('');
   const [github, setGithub] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
-  useEffect(() => {
-    if (open) {
-      setProgLangs(project.progLangs);
-      setTelegram(project.telegram);
-      setGithub(project.github);
-      setTitle(project.title);
-      setDescription(project.description);
-    }
-  }, [open, project.description, project.github, project.progLangs, project.telegram, project.title]);
+  const onOpen = () => {
+    setProgLangs(project.progLangs ?? []);
+    setTelegram(project.telegram ?? '');
+    setGithub(project.github ?? '');
+    setTitle(project.title ?? '');
+    setDescription(project.description ?? '');
+    setOpen(true);
+  };
+
+  const onClose = () => setOpen(false);
+
+  const onSave = () => {
+    onClose();
+  };
 
   const onChangeProgLangs = (newProgLangs: ProgLangsEnum[]) => setProgLangs(newProgLangs);
 
@@ -46,59 +45,64 @@ const EditProjectPopup = ({ open, onClose, onSave, project }: Props) => {
   const onChangeDescription = (e: ChangeEvent<HTMLTextAreaElement>) => setDescription(e.target.value);
 
   return (
-    <Popup
-      fullWidth={true}
-      open={open}
-      onClose={onClose}>
-      <Stack gap={2}>
-        <SelectProgLangsPopup
-          progLangs={progLangs}
-          onChange={onChangeProgLangs}
-        />
-        <TextField
-          label='Ссылка на telegram'
-          variant='outlined'
-          value={telegram}
-          onChange={onChangeTelegram}
-        />
-        <TextField
-          label='Ссылка на github'
-          variant='outlined'
-          value={github}
-          onChange={onChangeGithub}
-        />
-        <TextField
-          label='Название'
-          variant='outlined'
-          value={title}
-          onChange={onChangeTitle}
-        />
-        <TextareaAutosize
-          minRows={5}
-          maxRows={5}
-          placeholder='Описание'
-          value={description}
-          onChange={onChangeDescription}
-          style={{ resize: 'none', width: '100%' }}
-        />
-        <Stack
-          justifyContent='space-between'
-          direction='row'>
-          <Button
-            color='error'
-            variant='contained'
-            onClick={onClose}>
-            Закрыть
-          </Button>
-          <Button
-            color='success'
-            variant='contained'
-            onClick={onSave}>
-            Сохранить
-          </Button>
+    <>
+      <IconButton onClick={onOpen}>
+        <EditIcon />
+      </IconButton>
+      <Popup
+        fullWidth={true}
+        open={open}
+        onClose={onClose}>
+        <Stack gap={2}>
+          <SelectProgLangsPopup
+            progLangs={progLangs}
+            onChange={onChangeProgLangs}
+          />
+          <TextField
+            label='Ссылка на telegram'
+            variant='outlined'
+            value={telegram}
+            onChange={onChangeTelegram}
+          />
+          <TextField
+            label='Ссылка на github'
+            variant='outlined'
+            value={github}
+            onChange={onChangeGithub}
+          />
+          <TextField
+            label='Название'
+            variant='outlined'
+            value={title}
+            onChange={onChangeTitle}
+          />
+          <TextareaAutosize
+            minRows={5}
+            maxRows={5}
+            placeholder='Описание'
+            value={description}
+            onChange={onChangeDescription}
+            style={{ resize: 'none', width: '100%' }}
+          />
+          <Stack
+            justifyContent='space-between'
+            direction='row'>
+            <Button
+              color='error'
+              variant='contained'
+              onClick={onClose}>
+              Закрыть
+            </Button>
+            <Button
+              color='success'
+              variant='contained'
+              onClick={onSave}>
+              Сохранить
+            </Button>
+          </Stack>
         </Stack>
-      </Stack>
-    </Popup>
+      </Popup>
+    </>
   );
 };
 
