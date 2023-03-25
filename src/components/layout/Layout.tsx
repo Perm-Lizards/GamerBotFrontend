@@ -3,32 +3,49 @@ import './Layout.scss';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CodeIcon from '@mui/icons-material/Code';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
-import { useMemo } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-
-type Props = {
-  children: JSX.Element | JSX.Element[];
-};
+import { useCallback, useMemo } from 'react';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 enum RoutesEnum {
-  ROOT = '/',
   Profile = '/profile',
   Projects = '/projects',
 }
 
-const Layout = ({ children }: Props) => {
+const RoutesRegex = {
+  [RoutesEnum.Profile]: new RegExp(RoutesEnum.Profile),
+  [RoutesEnum.Projects]: new RegExp(RoutesEnum.Projects),
+} as {
+  [key in RoutesEnum]: RegExp;
+};
+
+const Layout = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const route = useMemo(() => (pathname === RoutesEnum.ROOT ? RoutesEnum.Profile : pathname), [pathname]);
+  const route = useMemo(() => {
+    if (pathname === '/') {
+      return RoutesEnum.Profile;
+    }
 
-  const onChange = (_: any, route: RoutesEnum) => {
-    navigate(route);
-  };
+    for (const route of Object.values(RoutesEnum) as Array<RoutesEnum>) {
+      if (pathname.match(RoutesRegex[route])) {
+        return route;
+      }
+    }
+  }, [pathname]);
+
+  const onChange = useCallback(
+    (_: any, route: RoutesEnum) => {
+      navigate(route);
+    },
+    [navigate]
+  );
 
   return (
     <div className='layout'>
-      <div className='layout-content'>{children}</div>
+      <div className='layout-content'>
+        <Outlet />
+      </div>
       <BottomNavigation
         showLabels
         value={route}
