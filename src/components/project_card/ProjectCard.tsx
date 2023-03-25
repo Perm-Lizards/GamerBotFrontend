@@ -2,23 +2,26 @@ import './ProjectCard.scss';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Stack } from '@mui/material';
+import { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { ProgLangsEnum } from '../../common/enums/ProgLangsEnum';
+import { ProjectType } from '../../common/types/ProjectType';
 import ProgLangs from '../prog_langs/ProgLangs';
 
-type Props = {
-  title: string;
-  description?: string;
-  progLangs?: ProgLangsEnum[];
-  usersNumber: number | string;
-  createdAt: string;
-  isOwned?: boolean;
-};
+type Props = ProjectType;
 
-const ProjectCard = ({ title, description, progLangs, usersNumber, createdAt }: Props) => {
+const ProjectCard = ({ id, title, description, progLangs, usersNumber, createdAt }: Props) => {
+  const navigate = useNavigate();
+
+  const onClick = useCallback(() => {
+    navigate(`/projects/${id}`);
+  }, [id, navigate]);
+
   return (
     <>
-      <div className='project_card'>
+      <div
+        className='project_card'
+        onClick={onClick}>
         <Stack
           justifyContent='space-between'
           direction='row'>
