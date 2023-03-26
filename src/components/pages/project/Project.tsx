@@ -11,6 +11,7 @@ import { ProgLangsEnum } from '../../../common/enums/ProgLangsEnum';
 import { RolesEnum } from '../../../common/enums/RolesEnum';
 import { ProjectType } from '../../../common/types/ProjectType';
 import ProgLangs from '../../prog_langs/ProgLangs';
+import EditMemberPopup from './components/edit_member_popup/EditMemberPopup';
 import EditProjectPopup from './components/edit_project_popup/EditProjectPopup';
 
 const project = {
@@ -63,9 +64,7 @@ const Project = () => {
         justifyContent='space-between'
         direction='row'
         className='project-info'>
-        <Stack
-          justifyContent='space-between'
-          gap='15px'>
+        <Stack gap='15px'>
           <Stack gap='5px'>
             <span className='project-info-title'>{project.title}</span>
             <span className='project-info-description'>{project.description}</span>
@@ -85,6 +84,9 @@ const Project = () => {
               className='project-info-buttons-github'>
               <span className='project-info-buttons-github-text'>{project.github}</span>
             </Button>
+          </Stack>
+          <Stack direction='row'>
+            <EditMemberPopup />
           </Stack>
         </Stack>
         <Stack
@@ -110,6 +112,7 @@ const Project = () => {
           </Stack>
         </Stack>
       </Stack>
+      <div className='project-readme'></div>
     </Stack>
   );
 };
