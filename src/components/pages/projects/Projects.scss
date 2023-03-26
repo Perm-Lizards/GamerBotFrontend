@@ -13,6 +13,42 @@
         background-color: #45ABE4;
         border-radius   : 10px;
         color           : white;
+
+    }
+
+    &-searchBar {
+        width       : 100%;
+        margin-right: 25px;
+
+        &-textField {
+            width: 100%;
+
+        }
+    }
+
+    &-filters {
+        width           : 100%;
+        padding         : 10px;
+        background-color: #7491A1;
+        border-radius   : 10px;
+        color           : white;
+
+        &-minNumber {
+            width    : 100%;
+            max-width: 100px;
+        }
+
+        &-maxNumber {
+            width    : 100%;
+            max-width: 100px;
+        }
+
+        &-date {
+            &-before {
+                width    : 100%;
+                max-width: 150px;
+            }
+        }
     }
 
     &-buttons {
