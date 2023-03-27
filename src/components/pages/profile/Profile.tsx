@@ -79,14 +79,9 @@ const Profile = () => {
 
   const renderProjects = useMemo(
     () =>
-      profile.projects.map(({ id, title, description, progLangs, usersNumber, createdAt }, i) => (
+      profile.projects.map((v, i) => (
         <ProjectCard
-          id={id}
-          title={title}
-          description={description}
-          progLangs={progLangs}
-          usersNumber={usersNumber}
-          createdAt={createdAt}
+          project={v}
           key={i}
         />
       )),

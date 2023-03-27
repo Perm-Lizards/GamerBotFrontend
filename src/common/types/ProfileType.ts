@@ -1,4 +1,5 @@
 import { ProgLangsEnum } from '../enums/ProgLangsEnum';
+import { RolesEnum } from '../enums/RolesEnum';
 import { ProjectType } from './ProjectType';
 
 export type ProfileType = {
@@ -10,4 +11,5 @@ export type ProfileType = {
   progLangs?: ProgLangsEnum[];
   isOwner?: boolean;
   projects?: ProjectType[];
+  role?: RolesEnum;
 };

@@ -11,8 +11,8 @@ import { ProgLangsEnum } from '../../../common/enums/ProgLangsEnum';
 import { RolesEnum } from '../../../common/enums/RolesEnum';
 import { ProjectType } from '../../../common/types/ProjectType';
 import ProgLangs from '../../prog_langs/ProgLangs';
-import EditMemberPopup from './components/edit_member_popup/EditMemberPopup';
 import EditProjectPopup from './components/edit_project_popup/EditProjectPopup';
+import ViewMemberPopup from './components/view_member_popup/ViewMemberPopup';
 
 const project = {
   telegram: 'link',
@@ -36,7 +36,9 @@ const Project = () => {
   }, []);
 
   const renderActionButton = useMemo(() => {
-    if (member.role === RolesEnum.PROJECT_MEMBER || member.role === RolesEnum.PROJECT_ADMIN || member.role === RolesEnum.PROJECT_OWNER) {
+    if (member.role === RolesEnum.PROJECT_OWNER) return;
+
+    if (member.role === RolesEnum.PROJECT_MEMBER || member.role === RolesEnum.PROJECT_ADMIN) {
       return (
         <Button
           variant='contained'
@@ -86,7 +88,7 @@ const Project = () => {
             </Button>
           </Stack>
           <Stack direction='row'>
-            <EditMemberPopup />
+            <ViewMemberPopup />
           </Stack>
         </Stack>
         <Stack
