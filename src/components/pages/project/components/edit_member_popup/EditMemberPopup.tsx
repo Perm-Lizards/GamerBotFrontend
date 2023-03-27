@@ -1,14 +1,20 @@
-import { Avatar, AvatarGroup, Button, Stack } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import { Button, Stack } from '@mui/material';
 import { useState } from 'react';
 
+import { ProfileType } from '../../../../../common/types/ProfileType';
 import Popup from '../../../../popup/Popup';
+import MemberCard from '../member_card/MemberCard';
 
-const EditMemberPopup = () => {
+type Props = {
+  member: ProfileType;
+  roleText: string;
+};
+
+const EditMemberPopup = ({ member, roleText }: Props) => {
   const [open, setOpen] = useState(false);
 
-  const onOpen = () => {
-    setOpen(true);
-  };
+  const onOpen = () => setOpen(true);
 
   const onClose = () => setOpen(false);
 
@@ -16,37 +22,75 @@ const EditMemberPopup = () => {
     onClose();
   };
 
+  const onUpgrade = () => {
+    // Logic
+  };
+
+  const onDowngrade = () => {
+    // Logic
+  };
+
+  const onExclude = () => {
+    // Logic
+  };
+
   return (
     <>
-      <AvatarGroup
-        max={4}
+      <Stack
+        justifyContent='center'
+        className='member_card-edit'
         onClick={onOpen}>
-        <Avatar />
-        <Avatar />
-        <Avatar />
-        <Avatar />
-        <Avatar />
-      </AvatarGroup>
+        <EditIcon style={{ fontSize: 20 }} />
+      </Stack>
       <Popup
         fullWidth={true}
         open={open}
-        onClose={onClose}>
-        <Stack>
+        onClose={onClose}
+        title='Редактирование участника проекта'>
+        <Stack gap={2}>
+          <MemberCard
+            member={member}
+            roleText={roleText}
+            showEditMember={false}
+            isDemo={true}
+          />
           <Stack
-            justifyContent='space-between'
-            direction='row'>
-            <Button
-              color='error'
-              variant='contained'
-              onClick={onClose}>
-              Закрыть
-            </Button>
-            <Button
-              color='success'
-              variant='contained'
-              onClick={onSave}>
-              Сохранить
-            </Button>
+            direction='row'
+            justifyContent='space-between'>
+            <Stack gap='5px'>
+              <Button
+                color='success'
+                variant='contained'
+                onClick={onUpgrade}>
+                Повысить
+              </Button>
+              <Button
+                color='error'
+                variant='contained'
+                onClick={onDowngrade}>
+                Понизить
+              </Button>
+              <Button
+                color='error'
+                variant='contained'
+                onClick={onExclude}>
+                Исключить
+              </Button>
+            </Stack>
+            <Stack gap='5px'>
+              <Button
+                color='success'
+                variant='contained'
+                onClick={onSave}>
+                Сохранить
+              </Button>
+              <Button
+                color='error'
+                variant='contained'
+                onClick={onClose}>
+                Закрыть
+              </Button>
+            </Stack>
           </Stack>
         </Stack>
       </Popup>

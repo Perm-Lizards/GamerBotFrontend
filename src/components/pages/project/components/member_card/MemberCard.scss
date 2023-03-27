@@ -1,0 +1,26 @@
+.member_card {
+    position        : relative;
+    border-radius   : 10px;
+    background-color: #3B46AE;
+    color           : white;
+    cursor          : pointer;
+
+    &-info {
+        flex-grow: 1;
+        padding  : 10px;
+
+        &-title {
+            font-size: 18px;
+        }
+
+        &-description {
+            font-size: 12px;
+        }
+    }
+
+    &-edit {
+        background-color: #7780d3;
+        border-radius   : 0 10px 10px 0;
+        padding         : 5px 15px;
+    }
+}

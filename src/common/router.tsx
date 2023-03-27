@@ -19,6 +19,10 @@ export default createBrowserRouter([
         element: <Profile />,
       },
       {
+        path: '/profile/:id',
+        element: <Profile />,
+      },
+      {
         path: '/projects',
         element: <Projects />,
       },

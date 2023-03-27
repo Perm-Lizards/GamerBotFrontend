@@ -1,28 +1,70 @@
+import './MemberCard.scss';
+
 import { Avatar, Stack } from '@mui/material';
+import { useCallback, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { ProgLangsEnum } from '../../../../../common/enums/ProgLangsEnum';
-import { RolesEnum } from '../../../../../common/enums/RolesEnum';
+import { ProfileType } from '../../../../../common/types/ProfileType';
+import ProgLangs from '../../../../prog_langs/ProgLangs';
+import EditMemberPopup from '../edit_member_popup/EditMemberPopup';
 
-const member = {
-  username: 'Имя',
-  progLangs: [] as ProgLangsEnum[],
-  role: RolesEnum.PROJECT_MEMBER,
+type Props = {
+  member: ProfileType;
+  roleText: string;
+  showEditMember: boolean;
+  isDemo?: boolean;
 };
 
-const MemberCard = () => {
+const MemberCard = ({ member: { id, username, progLangs }, roleText, showEditMember, isDemo }: Props) => {
+  const navigate = useNavigate();
+
+  const renderEditMember = useMemo(
+    () =>
+      showEditMember && (
+        <EditMemberPopup
+          member={{ username, progLangs }}
+          roleText={roleText}
+        />
+      ),
+    [progLangs, roleText, showEditMember, username]
+  );
+
+  const onClick = useCallback(() => {
+    if (!isDemo) {
+      navigate(`/profile/${id}`);
+    }
+  }, [id, isDemo, navigate]);
+
   return (
     <Stack
       direction='row'
-      justifyContent='space-between'>
-      <Stack gap='5px'>
-        <Stack>
-          <Avatar />
+      className='member_card'>
+      <Stack
+        direction='row'
+        justifyContent='space-between'
+        className='member_card-info'
+        onClick={onClick}>
+        <Stack
+          gap='5px'
+          direction='row'>
+          <Stack>
+            <Avatar />
+          </Stack>
+          <Stack gap='2px'>
+            <span className='member_card-info-title'>{username}</span>
+            <span className='member_card-info-description'>{roleText}</span>
+          </Stack>
         </Stack>
         <Stack>
-          <span className='project_card-title'>{member.username}</span>
-          <span className='project_card-description'>{member.role}</span>
+          <ProgLangs
+            width={25}
+            height={25}
+            progLangs={progLangs}
+            justifyContent='flex-end'
+          />
         </Stack>
       </Stack>
+      {renderEditMember}
     </Stack>
   );
 };
