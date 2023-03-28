@@ -1,60 +1,36 @@
 .projects {
-    position      : relative;
-    min-height    : 125px;
-    height        : 100%;
-    display       : flex;
-    flex-direction: column;
-    gap           : 10px;
-    padding       : 10px;
+    position: relative;
+    height  : 100%;
 
-    &-search {
-        width           : 100%;
-        padding         : 10px;
-        background-color: #45ABE4;
-        border-radius   : 10px;
-        color           : white;
+    &-top_part {
+        padding: 10px 10px 0;
 
-    }
-
-    &-searchBar {
-        width       : 100%;
-        margin-right: 25px;
-
-        &-textField {
-            width: 100%;
-
-        }
-    }
-
-    &-filters {
-        width           : 100%;
-        padding         : 10px;
-        background-color: #7491A1;
-        border-radius   : 10px;
-        color           : white;
-
-        &-minNumber {
-            width    : 100%;
-            max-width: 100px;
+        &-search {
+            padding         : 10px;
+            background-color: #45ABE4;
+            border-radius   : 10px;
         }
 
-        &-maxNumber {
-            width    : 100%;
-            max-width: 100px;
-        }
+        &-filter {
+            padding         : 10px;
+            background-color: #505050;
+            border-radius   : 10px;
 
-        &-date {
-            &-before {
-                width    : 100%;
-                max-width: 150px;
+            &-button {
+                background-color: #45ABE4;
             }
         }
     }
 
-    &-buttons {
+    &-list {
+        flex-grow: 1;
+        height   : 0;
+        overflow : scroll;
+        padding  : 0 10px;
+    }
 
-        &-search {}
-
-        &-filter {}
+    &-pagination {
+        display        : flex;
+        justify-content: center;
     }
 }

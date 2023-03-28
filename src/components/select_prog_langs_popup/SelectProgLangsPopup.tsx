@@ -11,10 +11,11 @@ import ProgLangs from '../prog_langs/ProgLangs';
 
 type Props = {
   progLangs: ProgLangsEnum[];
+  width?: number;
   onChange: (v: ProgLangsEnum[]) => void;
 };
 
-const SelectProgLangsPopup = ({ progLangs, onChange }: Props) => {
+const SelectProgLangsPopup = ({ progLangs, width, onChange }: Props) => {
   const [open, setOpen] = useState(false);
   const [selectedProgLangs, setSelectedProgLangs] = useState([] as ProgLangsEnum[]);
 
@@ -73,8 +74,8 @@ const SelectProgLangsPopup = ({ progLangs, onChange }: Props) => {
     <>
       <div style={{ display: 'flex' }}>
         <ProgLangs
-          width={50}
-          height={50}
+          width={width ?? 50}
+          height={width ?? 50}
           progLangs={progLangs}
           onClick={onOpen}
         />
